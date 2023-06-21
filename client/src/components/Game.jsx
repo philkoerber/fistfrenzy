@@ -4,6 +4,7 @@ import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 
 import useFistStore from './fistStore';
 import Hand from './GameComponents/Hand';
+import Countdown from './GameComponents/Countdown';
 
 
 const handButtonStyles = "bg-lightblue w-20 h-20 cursor-pointer rounded-full flex justify-center items-center"
@@ -51,14 +52,38 @@ function Game() {
 
 
     return (
-        <div className='w-full relative h-full flex justify-center items-center gap-4'>
-            <motion.div className='absolute bottom-0'>
+        <div className='w-full relative h-full flex justify-center items-center gap-4 overflow-hidden'>
+            <div className='w-full h-full flex justify-center absolute'>
+                <motion.div
+                className='absolute -bottom-[10%]'
+                animate={selectedMoves.player ? {
+                    y: "-25vh",
+                    scale: 1,
+                } :
+                    {
+                        x: 0,
+                        scale: 0.75
+                    }}>
                 <Hand selectedMove={selectedMoves.player} />
             </motion.div>
-            
-            {/* <motion.div className='absolute top-0'>
+            </div>
+
+            <div className='w-full h-full flex justify-center absolute rotate-180'>
+                <motion.div
+                className='absolute -bottom-[10%]'
+                animate={selectedMoves.opponent ? {
+                    y: "-25vh",
+                    scale: 1,
+                } :
+                    {
+                        x: 0,
+                        scale: 0.75
+                    }}>
                 <Hand selectedMove={selectedMoves.opponent} />
-            </motion.div> */}
+            </motion.div>
+            </div>
+            
+            <div><Countdown/></div>
             
             <div className='flex gap-6 absolute bottom-6'>
                 <motion.div

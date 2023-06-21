@@ -21,17 +21,18 @@ function Hand({selectedMove}) {
     })
 
     useEffect(() => {
+        if(selectedMove){
         var animation = animate(progress, 1, {duration: 0.2})
         setTimeout(() => {
             animation = animate(progress, 0, { duration: 0.2 })
-        }, 1500)
+        }, 1800)
         
-        return () => animation.stop();}
+        return () => animation.stop();}}
     , [selectedMove])
 
     return (
         
-            <div className='w-[300px] h-[300px]'>
+            <div className='w-[40vh] h-[40vh]'>
                 <svg width="100%" height="100%" viewBox='0 0 400 400'>
                         <g transform="translate(10 10) scale(17 17)">
                         <motion.path fill={"#ffffff"} d={path} />
