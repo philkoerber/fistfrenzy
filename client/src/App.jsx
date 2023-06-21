@@ -11,7 +11,7 @@ import useFistStore from "./components/fistStore";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const { gameId, setGameState, setPlayerNumber, setWinner, setHands, setGameId, connectToSocket } = useFistStore()
+  const { gameId, setPhase, setGameState, setPlayerNumber, setWinner, setHands, setGameId, connectToSocket } = useFistStore()
   
   useEffect(() => {
     connectToSocket((socket) => {
@@ -22,13 +22,13 @@ function App() {
         });
       
       socket.on("countdown", (newState) => {
-        console.log("countdown...")
+        setPhase("countdown")
         setHands({player1: null, player2: null})
         setGameState(newState);
       })
       
       socket.on("showdown", ({ hands, result, gameState }) => {
-        console.log("showdown!")
+        setPhase("showdown")
         setHands(hands);
         setWinner(result);
         setGameState(gameState)

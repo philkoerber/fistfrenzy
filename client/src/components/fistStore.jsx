@@ -26,6 +26,9 @@ const useFistStore = create((set) => ({
   playerNumber: null,
   setPlayerNumber: (number) => set(() => ({ playerNumber: number })),
 
+  phase: "",
+  setPhase: (newPhase) => set(()=> ({phase: newPhase})),
+
   gameState: null,
   setGameState: (newState) => set(() => ({ gameState: newState })),
 

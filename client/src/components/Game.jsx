@@ -21,9 +21,10 @@ const handButtonAnimation = (isSelected) => {
 function Game() {
     
 
-    const { gameState, hands, winner, playerNumber, socket } = useFistStore();
+    const { gameState, phase, hands, winner, playerNumber, socket } = useFistStore();
     const [selectedButtonIndex, setSelectedButtonIndex] = useState()
-    const [selectedMoves, setSelectedMoves] = useState({player: 0, opp: 0})
+    const [selectedMoves, setSelectedMoves] = useState({ player: 0, opp: 0 })
+    const [count, setCount] = useState(3)
 
     
 
@@ -34,7 +35,9 @@ function Game() {
         setSelectedMoves({player: hands[player], opponent: hands[opponent]})
     }, [hands])
 
-    useEffect(()=>{setSelectedButtonIndex(null)},[winner])
+    useEffect(() => {
+        setSelectedButtonIndex(null);
+    }, [winner])
     
     const handleClick = (index) => {
         if(index!=null){
@@ -47,7 +50,18 @@ function Game() {
     }
 
     
+    useEffect(() => {
+        if(phase==="countdown"){
+    const timer = setInterval(() => {
+      setCount((prevCount) => prevCount - 1);
+    }, 1000);
 
+    if (count === 0) {
+      clearInterval(timer);
+    }
+
+    return () => clearInterval(timer);}
+  }, [phase]);
 
 
 
@@ -83,7 +97,7 @@ function Game() {
             </motion.div>
             </div>
             
-            <div><Countdown/></div>
+            <div><Countdown count={count} /></div>
             
             <div className='flex gap-6 absolute bottom-6'>
                 <motion.div

@@ -66,7 +66,7 @@ function createGame() {
 
 async function startGame(game, io) {
   // ...
-
+  console.log("start game...")
   // Making the game active
   game.gameStatus = "active";
 
