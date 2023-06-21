@@ -1,36 +1,39 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-function Countdown({count}) {
-  const countdownVariants = {
-    start: {
-      pathLength: 1,
-    },
-    end: {
-      pathLength: 0,
-    },
-  };
+function Countdown({ phase }) {
+  
+  const [count, setCount] = useState(3)
+  
+  useEffect(() => {
+    if (phase === "countdown") {
+      setCount(3)
+      setTimeout(() => setCount(2), 1000)
+      setTimeout(() => setCount(1), 2000)
+    }
+    if (phase === "showdown") {
+      setCount(null)
+    }
+    
+  },[phase])
 
   return (
-    <div className="text-white text-5xl">
-      <svg className="w-32 h-32">
-              <motion.path
-                key={count}
-          fill="transparent"
-          stroke="#ffffff"
-          strokeWidth="2"
-          strokeLinecap="round"
-          d="M16 1
-             a 15 15 0 0 1 0 30
-             a 15 15 0 0 1 0 -30"
-          variants={countdownVariants}
-          initial="start"
-          animate="end"
-          transition={{ duration: 1 }}
-        />
-          </svg>
+    <AnimatePresence>
+      <div className='h-[10%] w-[10%] relative flex justify-center items-center'>
+        <motion.div
+        className='absolute text-5xl text-white'
+          key={phase}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{scale: 0}}
+
+          >
           {count}
-    </div>
+    </motion.div>
+      </div>
+      
+    </AnimatePresence>
+    
   );
 }
 

@@ -24,7 +24,6 @@ function Game() {
     const { gameState, phase, hands, winner, playerNumber, socket } = useFistStore();
     const [selectedButtonIndex, setSelectedButtonIndex] = useState()
     const [selectedMoves, setSelectedMoves] = useState({ player: 0, opp: 0 })
-    const [count, setCount] = useState(3)
 
     
 
@@ -48,22 +47,6 @@ function Game() {
         if(index===2){move="scissors"}
         socket.emit("playerMove", move)}
     }
-
-    
-    useEffect(() => {
-        if(phase==="countdown"){
-    const timer = setInterval(() => {
-      setCount((prevCount) => prevCount - 1);
-    }, 1000);
-
-    if (count === 0) {
-      clearInterval(timer);
-    }
-
-    return () => clearInterval(timer);}
-  }, [phase]);
-
-
 
     return (
         <div className='w-full relative h-full flex justify-center items-center gap-4 overflow-hidden'>
@@ -97,7 +80,7 @@ function Game() {
             </motion.div>
             </div>
             
-            <div><Countdown count={count} /></div>
+            <div><Countdown phase={phase} /></div>
             
             <div className='flex gap-6 absolute bottom-6'>
                 <motion.div
