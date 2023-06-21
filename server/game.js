@@ -65,61 +65,55 @@ function createGame() {
 }
 
 async function startGame(game, io) {
-
-  const socketPlayer1 = io.sockets.sockets.get(game.players[0].socketId);
-  const socketPlayer2 = io.sockets.sockets.get(game.players[1].socketId);
+  // ...
 
   // Making the game active
   game.gameStatus = "active";
 
   const playerIds = [game.players[0].socketId, game.players[1].socketId];
 
-  io.to(playerIds[0]).emit("game-started", {gameId: game.gameId, playerNumber: 0});
-  io.to(playerIds[1]).emit("game-started", {gameId: game.gameId, playerNumber: 1});
+  io.to(playerIds[0]).emit("game-started", { gameId: game.gameId, playerNumber: 0 });
+  io.to(playerIds[1]).emit("game-started", { gameId: game.gameId, playerNumber: 1 });
 
+  let hands = { player1: null, player2: null };
 
-  await game.save().then(async () => {
-
-    let hands = {player1: null, player2: null}
-
-    //settin up listener for clients while game
-    game.players.forEach((player, index) => {
-      const socket = io.sockets.sockets.get(player.socketId);
-      socket.on("playerMove", (hand) => {
-       hands = { ...hands, ["player" + (index + 1)]: hand };
-       });
-        });
-
-    while (game.currentTurn < 100) {
-  io.to(playerIds).emit("countdown", gameToGameState(game));
-
-  setTimeout(async () => {
-    const result = determineWinner(hands.player1, hands.player2);
-    if (result === "player1") {
-      game.players[0].score++;
-    } else if (result === "player2") {
-      game.players[1].score++;
-    }
-
-    await game.save();
-    io.to(playerIds).emit("showdown", {
-      hands,
-      result,
-      gameState: gameToGameState(game),
+  // Set up listener for clients while the game is in progress
+  game.players.forEach((player, index) => {
+    const socket = io.sockets.sockets.get(player.socketId);
+    socket.on("playerMove", (hand) => {
+      hands = { ...hands, ["player" + (index + 1)]: hand };
     });
-    hands = { player1: null, player2: null };
-  }, 3000);
-
-  await new Promise((resolve) =>
-    setTimeout(() => {
-      game.currentTurn = game.currentTurn + 1;
-      resolve(game.save());
-    }, 5000));
-}
-
   });
 
+  while (game.currentTurn < 100) {
+    io.to(playerIds).emit("countdown", gameToGameState(game));
+
+    setTimeout(async () => {
+      const result = determineWinner(hands.player1, hands.player2);
+      if (result === "player1") {
+        game.players[0].score++;
+      } else if (result === "player2") {
+        game.players[1].score++;
+      }
+
+      await game.save();
+      io.to(playerIds).emit("showdown", {
+        hands,
+        result,
+        gameState: gameToGameState(game),
+      });
+      hands = { player1: null, player2: null };
+    }, 3000);
+
+    game.currentTurn += 1;
+    await game.save();
+
+    await new Promise((resolve) =>
+      setTimeout(resolve, 5000)
+    );
+  }
 }
+
 
 module.exports = function (io) {
   //------------------Lobbying & Find Game------------------

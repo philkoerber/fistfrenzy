@@ -56,9 +56,9 @@ function Game() {
                 <Hand selectedMove={selectedMoves.player} />
             </motion.div>
             
-            <motion.div className='absolute top-0'>
+            {/* <motion.div className='absolute top-0'>
                 <Hand selectedMove={selectedMoves.opponent} />
-            </motion.div>
+            </motion.div> */}
             
             <div className='flex gap-6 absolute bottom-6'>
                 <motion.div

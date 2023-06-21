@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { motion, animate, useTransform, useMotionValue } from 'framer-motion';
 import { interpolate } from "flubber";
-import { star, heart, hand, plane, lightning, note } from "../paths";
+import { organicCircle, hand, lightning, heart } from "../paths";
 
-const pathArray = [heart, hand, plane, lightning]
+const pathArray = [organicCircle, heart, hand, lightning]
 
 const moveToIndex = (move) => {
     if (move === "rock") { return 1 }
