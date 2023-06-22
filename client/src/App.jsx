@@ -11,14 +11,26 @@ import useFistStore from "./components/fistStore";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
-  const { gameId, setPhase, setGameState, setPlayerNumber, setWinner, setHands, setGameId, connectToSocket } = useFistStore()
+  const {
+    gameId,
+    setOpponent, 
+    setPhase, 
+    setGameState, 
+    setPlayerNumber, 
+    setWinner, 
+    setHands, 
+    setGameId, 
+    connectToSocket
+  } = useFistStore()
   
   useEffect(() => {
     connectToSocket((socket) => {
         //setting up event listeners
-        socket.on("game-started", (data) => {
+      socket.on("game-started", (data) => {
+          console.log(data.opponent)
           setGameId(data.gameId);
           setPlayerNumber(data.playerNumber);
+          setOpponent(data.opponent);
         });
       
       socket.on("countdown", (newState) => {

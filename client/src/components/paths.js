@@ -10,3 +10,4 @@ export const plane =
 export const lightning = "M7 2v11h3v9l7-12h-4l4-8z";
 export const note =
   "M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z";
+export const scissors = "M2 18 L6 22 L10 18 L16 18 L20 22 L24 18 L20 14 L24 10 L20 6 L16 10 L10 6 L6 10 L2 6 L6 2 L10 6 L16 6 L20 2 L24 6 L20 10 L24 14 Z";

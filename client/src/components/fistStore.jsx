@@ -26,6 +26,9 @@ const useFistStore = create((set) => ({
   playerNumber: null,
   setPlayerNumber: (number) => set(() => ({ playerNumber: number })),
 
+  opponent: {username: "", elo: ""},
+  setOpponent: (newOpponent) => set(() => ({ opponent: newOpponent })),
+
   phase: "",
   setPhase: (newPhase) => set(()=> ({phase: newPhase})),
 

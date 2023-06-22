@@ -5,6 +5,7 @@ import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import useFistStore from './fistStore';
 import Hand from './GameComponents/Hand';
 import Countdown from './GameComponents/Countdown';
+import OpponentInfo from './GameComponents/OpponentInfo';
 
 
 const handButtonStyles = "bg-lightblue w-20 h-20 cursor-pointer rounded-full flex justify-center items-center"
@@ -85,6 +86,10 @@ function Game() {
                     }}>
                 <Hand selectedMove={selectedMoves.opponent} />
             </motion.div>
+            </div>
+
+            <div className='absolute top-0'>
+                <OpponentInfo/>
             </div>
             
             <div><Countdown phase={phase} /></div>

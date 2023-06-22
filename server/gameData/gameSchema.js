@@ -10,7 +10,8 @@ const gameSchema = new mongoose.Schema({
     {
       playerId: { type: String, required: true },
       socketId: { type: String },
-      name: { type: String },
+      username: { type: String },
+      elo: { type: Number },
       score: { type: Number, default: 0 },
     },
   ],

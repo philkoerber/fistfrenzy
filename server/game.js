@@ -71,9 +71,21 @@ async function startGame(game, io) {
   game.gameStatus = "active";
 
   const playerIds = [game.players[0].socketId, game.players[1].socketId];
+  console.log(game.players[1].socketId)
 
-  io.to(playerIds[0]).emit("game-started", { gameId: game.gameId, playerNumber: 0 });
-  io.to(playerIds[1]).emit("game-started", { gameId: game.gameId, playerNumber: 1 });
+  io.to(playerIds[0]).emit("game-started",
+    {
+      gameId: game.gameId,
+      playerNumber: 0,
+      opponent: { username: game.players[1].username, elo: game.players[1].elo }
+    });
+  
+  io.to(playerIds[1]).emit("game-started",
+    {
+      gameId: game.gameId,
+      playerNumber: 1,
+      opponent: { username: game.players[0].username, elo: game.players[0].elo }
+    });
 
   let hands = { player1: null, player2: null };
 
@@ -120,6 +132,8 @@ module.exports = function (io) {
   router.post("/findGame", async (req, res) => {
     const userCookie = req.user.id;
     const socketId = req.body.socketId;
+    const username = req.user.username;
+    const elo = req.user.elo;
     const player = await Player.findOne({ _id: userCookie }).exec();
     if (player) {
       player.socketId = socketId;
@@ -132,6 +146,8 @@ module.exports = function (io) {
       waitingGame.players.push({
         playerId: userCookie,
         socketId: socketId,
+        username: username,
+        elo: elo,
       });
       await waitingGame.save();
 
