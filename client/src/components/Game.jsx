@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion} from 'framer-motion';
 
 
 import useFistStore from './fistStore';
 import Hand from './GameComponents/Hand';
 import Countdown from './GameComponents/Countdown';
 import OpponentInfo from './GameComponents/OpponentInfo';
+import CurrentTurn from './GameComponents/CurrentTurn';
 
 
 const handButtonStyles = "bg-lightblue w-20 h-20 cursor-pointer rounded-full flex justify-center items-center"
@@ -38,7 +39,7 @@ function Game() {
     useEffect(() => {
         setSelectedButtonIndex(null);
         if (phase === "countdown") {
-            
+            console.log(gameState)
         }
         if (phase === "showdown") {
             console.log(winner)
@@ -57,7 +58,8 @@ function Game() {
     }
 
     return (
-        <div className='w-full relative h-full flex justify-center items-center gap-4 overflow-hidden'>
+        <motion.div
+            className='w-full h-full relative flex justify-center items-center gap-4 overflow-hidden'>
             <div className='w-full h-full flex justify-center absolute'>
                 <motion.div
                 className='absolute -bottom-[10%]'
@@ -93,6 +95,7 @@ function Game() {
             </div>
             
             <div><Countdown phase={phase} /></div>
+            <div><CurrentTurn currentTurnNumber={gameState?.currentTurn}/></div>
             
             <div className='flex gap-6 absolute bottom-6'>
                 <motion.div
@@ -113,7 +116,7 @@ function Game() {
 
             </div>
             
-        </div>
+        </motion.div>
     );
 }
 

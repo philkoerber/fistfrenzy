@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { motion, animate, useTransform, useMotionValue } from 'framer-motion';
+import { motion, animate, useTransform, useMotionValue, progress } from 'framer-motion';
 import { interpolate } from "flubber";
-import { organicCircle, hand, heart, scissors } from "../paths";
+import { organicCircle, hand, heart, lightning } from "../paths";
 
-const pathArray = [organicCircle, heart, hand, scissors]
+const pathArray = [organicCircle, heart, hand, lightning]
 
 const moveToIndex = (move) => {
     if (move === "rock") { return 1 }
@@ -13,12 +13,14 @@ const moveToIndex = (move) => {
         
 }
 
-function Hand({selectedMove}) {
+const useFlubber = (progress, selectedMove) => useTransform(progress, [0, 1], [pathArray[0], pathArray[moveToIndex(selectedMove)]], {
+    mixer: (a, b) => interpolate(a, b, {maxSegmentLength: 1})
+})
+
+function Hand({ selectedMove }) {
     const progress = useMotionValue(0)
 
-    const path = useTransform(progress, [0, 1], [pathArray[0], pathArray[moveToIndex(selectedMove)]], {
-        mixer: (a, b) => interpolate(a, b, {maxSegmentLength: 1})
-    })
+    const path = useFlubber(progress, selectedMove)
 
     useEffect(() => {
         if(selectedMove){
@@ -42,4 +44,4 @@ function Hand({selectedMove}) {
     );
 }
 
-export default Hand;
+export default React.memo(Hand);

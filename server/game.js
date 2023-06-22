@@ -50,10 +50,6 @@ function createGame() {
     gameStatus: "waiting",
     currentTurn: null,
     players: [],
-    gameBoard: {
-      currentTrick: null,
-      cardsPlayed: [],
-    },
   });
 
   newGame.join = async function (playerId, socketId) {
@@ -164,7 +160,12 @@ module.exports = function (io) {
     } else {
       //if no open game, create one and join it
       const newGame = createGame();
-      newGame.join(userCookie, socketId);
+      newGame.players.push({
+        playerId: userCookie,
+        socketId: socketId,
+        username: username,
+        elo: elo,
+      });
       await newGame.save();
       console.log(
         "created a new game " + newGame.gameId + " and assigned player"

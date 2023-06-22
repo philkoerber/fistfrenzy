@@ -43,7 +43,6 @@ function App() {
         setPhase("showdown")
         setHands(hands);
         setWinner(result);
-        setGameState(gameState)
       })
       
     });
