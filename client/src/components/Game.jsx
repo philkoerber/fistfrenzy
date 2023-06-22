@@ -36,16 +36,23 @@ function Game() {
 
     useEffect(() => {
         setSelectedButtonIndex(null);
-    }, [winner])
+        if (phase === "countdown") {
+            
+        }
+        if (phase === "showdown") {
+            console.log(winner)
+        }
+    },[phase])
     
     const handleClick = (index) => {
+        if(phase==="countdown"){
         if(index!=null){
         setSelectedButtonIndex(index)
         let move = ""
         if (index === 0) { move = "rock" }
         if (index === 1) { move = "paper" }
         if(index===2){move="scissors"}
-        socket.emit("playerMove", move)}
+        socket.emit("playerMove", move)}}
     }
 
     return (

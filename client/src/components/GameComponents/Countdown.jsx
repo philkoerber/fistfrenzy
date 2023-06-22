@@ -21,14 +21,29 @@ function Countdown({ phase }) {
     <AnimatePresence>
       <div className='h-[10%] w-[10%] relative flex justify-center items-center'>
         <motion.div
+          key={count}
         className='absolute text-5xl text-white'
-          key={phase}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{scale: 0}}
 
-          >
-          {count}
+        >
+          <motion.div
+            key={count}
+            initial={{
+              scale: 0,
+              opacity: 0}}
+            animate={{
+              scale: 2,
+              opacity: 1,
+            }}
+            exit={{
+              scale: 4,
+              opacity: 0
+            }}>
+              {count}
+          </motion.div>
+          
     </motion.div>
       </div>
       
