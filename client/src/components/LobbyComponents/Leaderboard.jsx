@@ -63,13 +63,16 @@ function Leaderboard({ playersList }) {
                 {sortedPlayers.map((player, index) => {
                     const backgroundColor = (index % 2 === 0 ? "bg-verydarkblue" : "");
                   return (
-                    <div
+                    <motion.div
                       className={'flex rounded-md bg-opacity-30 ' + backgroundColor}
-                      key={index + " player"}>
+                      key={index + " player"}
+                      initial={{ y: 30, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{duration: 0.6, delay: index*0.2}}>
                             <div className={tableBodyStyles}>{player.username}</div>
                             <div className={tableBodyStyles}>{player.elo}</div>
                             <div className={tableBodyStyles}>Stein</div>
-                    </div>
+                    </motion.div>
                 )})}
             </div>
 
