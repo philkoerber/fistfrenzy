@@ -40,7 +40,7 @@ function Leaderboard({ playersList }) {
 
     return (
         <div className='h-full w-full p-2 text-lightblue text-lg'>
-            <div className='h-1/6 flex justify-center items-center text-2xl'>LEADERBOARD</div>
+            <div className='h-1/8 flex justify-center items-center text-5xl'>LEADERBOARD</div>
             <div className='flex text-xl font-bold mb-2'>
                 <motion.div 
                 className={tableHeadStyles} 
