@@ -10,7 +10,7 @@ import Chat from './LobbyComponents/Chat';
 
 
 const parentBoxProps = {
-  className: "bg-darkblue"
+  className: "bg-darkblue bg-noise shadow-darkblue"
 }
 
 function Lobby(props) {

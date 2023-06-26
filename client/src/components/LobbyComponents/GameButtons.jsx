@@ -2,6 +2,7 @@ import React from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { helloArray } from './helloArray';
 import Spinner from './Spinner';
+import GrainyBackground from '../GrainyBackground';
 
 const randomHello = () => {
     const randomIndex = Math.floor(Math.random() * helloArray.length)
@@ -25,8 +26,8 @@ function GameButtons({ user, handleGameButton, loadingButton }) {
     const hello = randomHello();
 
     return (
-        <div className='w-full h-full m-2 text-lightblue'>
-            
+        <div className='w-full h-full text-lightblue relative'>
+                <div className=""></div>
                 <div
                     className='text-[500%] text-center font-verziert text-transparent bg-clip-text 
                     bg-gradient-to-b from-black to-transparent'>

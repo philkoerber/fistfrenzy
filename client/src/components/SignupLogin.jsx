@@ -35,13 +35,13 @@ const SignupLogin = ({setIsAuth}) => {
       url: "http://localhost:3001/signup",
     })
       .then((res) => {
-        console.log(res.data);
         setIsAuth(true);
       })
       .catch((err) => {
         if (err.response) {
           setSignupError(err.response.data)
         };
+
       });
   };
 
@@ -130,7 +130,8 @@ const SignupLogin = ({setIsAuth}) => {
             onChange={(event)=>setSignupUser({ ...signupUser, password: event.target.value })}
           />
         </div>
-        <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center">
+            
           <button
             className="bg-gray-500 w-full max-w-[400px] hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
