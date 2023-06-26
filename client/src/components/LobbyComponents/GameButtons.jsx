@@ -1,6 +1,7 @@
 import React from 'react';
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { helloArray } from './helloArray';
+import Spinner from './Spinner';
 
 const randomHello = () => {
     const randomIndex = Math.floor(Math.random() * helloArray.length)
@@ -10,7 +11,7 @@ const randomHello = () => {
 
 const animationProps = (delay) => {
     return {
-        initial: { opacity: 0, y: 50 },
+        initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
         transition: { duration: 2, delay: delay },
     }
@@ -26,13 +27,13 @@ function GameButtons({ user, handleGameButton, loadingButton }) {
     const hello = randomHello();
 
     return (
-        <div className='w-full h-full items-center m-2 text-lightblue'>
+        <div className='w-full h-full m-2 text-lightblue'>
             
-                <motion.div
+                <div
                     className='text-[500%] text-center font-verziert text-transparent bg-clip-text 
                     bg-gradient-to-b from-black to-transparent'>
                     FI$TFRENZY
-                </motion.div>
+                </div>
 
             
                 <motion.div {...animationProps(0.2)}
@@ -52,10 +53,26 @@ function GameButtons({ user, handleGameButton, loadingButton }) {
             </div>
 
             <motion.div
-                {...animationProps(2)}
-                className='cursor-pointer bg-verydarkblue w-[90%] mx-auto flex justify-center items-center font-verziert text-5xl shadow-2xl rounded-sm p-8'
+                whileHover={{ backdropBlur: '20px' }}
+                whileTap={{scale: 0.9}}
+                transition={{duration: 0.2}}
+                className='cursor-pointer bg-verydarkblue bg-opacity-50 w-[40%] h-[100px] mx-auto font-verziert text-5xl shadow-2xl rounded-sm p-8'
                 onClick={()=>handleGameButton()}
-            >PLAY</motion.div>
+            >
+                <AnimatePresence>
+                    <motion.div
+                        key={loadingButton}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{opacity: 0}}
+                        className='w-full h-full flex justify-center items-center'>
+                        {loadingButton
+                            ?
+                            <Spinner /> :
+                            <div className='absolute'>PLAY</div>}
+                    </motion.div>
+                </AnimatePresence>
+            </motion.div>
 
         </div>
         

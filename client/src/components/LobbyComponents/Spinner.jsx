@@ -12,7 +12,7 @@ function Spinner(props) {
             <motion.div
         className="border-1 border-t-2 rounded-full h-16 w-16"
                 style={{
-            borderTopColor: "#4BA3C3",
+            borderTopColor: "#CCE6F4",
           borderRightColor: 'transparent',
           borderBottomColor: 'transparent',
             borderLeftColor: 'transparent',

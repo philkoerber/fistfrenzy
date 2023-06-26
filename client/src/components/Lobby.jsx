@@ -5,6 +5,8 @@ import Axios from 'axios';
 import GameButtons from './LobbyComponents/GameButtons';
 import useFistStore from './fistStore';
 import Spinner from './LobbyComponents/Spinner';
+import Infoboard from './LobbyComponents/Infoboard';
+import Chat from './LobbyComponents/Chat';
 
 
 const parentBoxProps = {
@@ -50,7 +52,7 @@ function Lobby(props) {
       data: { socketId: socket.id },
     }).then((res) => {
       console.log(res)
-      setLoadingButton(!res.data.foundGame);
+      setLoadingButton(true);
     });
     };
 
@@ -87,16 +89,32 @@ function Lobby(props) {
         </div>
 
         <div {...parentBoxProps}>
-                <motion.div {...boxProps}>
-                <Spinner/>
+                <motion.div
+          {...boxProps}
+          key={playersList}
+        >
+          {playersList ?
+            <Infoboard />
+            :
+            <Spinner/>
+                }
+                
             </motion.div>
         </div>
         
         <div {...parentBoxProps}>
-          <motion.div {...boxProps}>
-                <Spinner/>
+                <motion.div
+          {...boxProps}
+          key={playersList}
+        >
+          {playersList ?
+            <Chat />
+            :
+            <Spinner/>
+                }
+                
             </motion.div>
-            </div>
+        </div>
         
         </div>
     );

@@ -42,7 +42,7 @@ function Leaderboard({ playersList }) {
       <div className='h-full w-full font-normal text-lightblue'>
         
           <div className='w-full text-[500%] text-center
-            font-verziert text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent'>LEADERBOARD</div>
+            font-verziert text-transparent bg-clip-text bg-gradient-to-b from-black via-verydarkblue to-transparent'>LEADERBOARD</div>
       
         
             <div className='flex text-xl font-bold mb-2'>
@@ -69,7 +69,7 @@ function Leaderboard({ playersList }) {
                   return (
                     <motion.div
                       className={'flex shadow-md shadow-verydarkblue bg-opacity-30 ' + backgroundColor}
-                      key={index + " player"}
+                      key={[index, sortCriteria]}
                       initial={{ y: 30, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{duration: 0.6, delay: index*0.2}}>
