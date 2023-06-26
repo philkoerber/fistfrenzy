@@ -7,7 +7,9 @@ const SignupLogin = ({setIsAuth}) => {
   const [loginUser, setLoginUser] = useState({});
   const [signupUser, setSignupUser] = useState({});
 
-  const [signupError, setSignupError] = useState("")
+  const [signupError, setSignupError] = useState("okcool")
+  const [loginError, setLoginError] = useState("")
+
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +48,13 @@ const SignupLogin = ({setIsAuth}) => {
   };
 
   return (
-      <div className="flex flex-col justify-center items-center h-full w-full">
-          
-      <div className='flex-none flex h-1/5 bg-gray-300 w-full justify-center items-center
-            font-verziert font-bold text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent'>
+      <div className="flex flex-col justify-center items-center h-full w-full bg-noise">
+      <div className='w-full h-1/5 flex-none flex justify-center items-center'>
+        <div className='flex font-verziert font-bold text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent'>
                 <p className='text-6xl'>FI$TFRENZY</p>
             </div>
+      </div>
+      
           
         {/* ===================LOGIN================ */}
           <div className="flex flex-1 w-full justify-center items-center">
@@ -84,7 +87,14 @@ const SignupLogin = ({setIsAuth}) => {
             Login
           </button>
           
-        </div>
+          </div>
+          <motion.div
+              key={signupError}
+              className='text-crimson h-8'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1}}>
+              {signupError}
+            </motion.div>
       </form>
     </div>
       
@@ -138,15 +148,15 @@ const SignupLogin = ({setIsAuth}) => {
           >
             Sign In
             </button>
-            <motion.div
+          
+          </div>
+          <motion.div
               key={signupError}
-              className='text-crimson'
+              className='text-crimson h-8'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1}}>
               {signupError}
             </motion.div>
-          
-        </div>
       </form>
     </div>
           

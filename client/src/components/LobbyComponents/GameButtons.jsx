@@ -2,7 +2,6 @@ import React from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { helloArray } from './helloArray';
 import Spinner from './Spinner';
-import GrainyBackground from '../GrainyBackground';
 
 const randomHello = () => {
     const randomIndex = Math.floor(Math.random() * helloArray.length)
