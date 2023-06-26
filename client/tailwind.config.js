@@ -14,6 +14,10 @@ export default {
 
         crimson: "#D62839",
         indianyellow: "#F6AE2D"
+      },
+      fontFamily: {
+        "normal": ["Barlow", "sans-serif"],
+        "verziert": ["Xanh Mono", "monospace"]
       }
     },
   },

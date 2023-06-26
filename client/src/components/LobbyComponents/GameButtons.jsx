@@ -21,26 +21,37 @@ function GameButtons({ user, handleGameButton, loadingButton }) {
     const hello = randomHello();
 
     return (
-        <div className='h-full w-full flex flex-col justify-center items-center gap-8 overflow-hidden'>
+        <div>
+            <div className='gap-0 overflow-clip '>
+                <motion.div
+                    {...animationProps(0)}
+                    className='text-[500%] mb-0 font-verziert text-transparent bg-clip-text 
+                    bg-gradient-to-b from-black to-transparent'>
+                    {hello.hello.toUpperCase()},
+                </motion.div>
+
+                <motion.div {...animationProps(0.2)} className='text-[12px] text-right'>({hello.language})</motion.div></div>
+            <div className='h-full w-full font-normal gap-8 overflow-hidden text-lightblue'>
             
-            <div className='flex flex-col justify-center items-center gap-0'>
-                <motion.div {...animationProps(0)} className='text-[12vh] mb-0'>{hello.hello},</motion.div>
-                <motion.div {...animationProps(0.2)} className='text-[12px]'>({hello.language})</motion.div></div>
-            <motion.div {...animationProps(0.4)} className='text-5xl font-bold'>{user?.username}</motion.div>
             
-            <div className='flex flex-col '>
+            
+                <motion.div {...animationProps(0.4)} className='text-5xl'>{user?.username}</motion.div>
+            
+            <div className=''>
                 <motion.div {...animationProps(3)}>your current elo is...</motion.div>
                 <motion.div {...animationProps(3.2)} className='text-5xl'>{user?.elo}</motion.div>
             </div>
 
             <motion.div
                 {...animationProps(3.5)}
-                className='cursor-pointer bg-lightblue rounded-sm p-8'
-                whileTap={{ scale: 0.95 }}
+                className='cursor-pointer bg-verydarkblue font-verziert text-5xl shadow-xl rounded-sm p-8'
+                whileTap={{ scale: 0.8 }}
                 onClick={()=>handleGameButton()}
             >PLAY</motion.div>
 
         </div>
+        </div>
+        
     );
 }
 

@@ -43,7 +43,8 @@ const SignupLogin = ({setIsAuth}) => {
   return (
       <div className="flex flex-col justify-center items-center h-full w-full">
           
-            <div className='flex-none flex h-1/5 bg-gray-300 w-full justify-center items-center'>
+      <div className='flex-none flex h-1/5 bg-gray-300 w-full justify-center items-center
+            font-verziert font-bold text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent'>
                 <p className='text-6xl'>FI$TFRENZY</p>
             </div>
           
