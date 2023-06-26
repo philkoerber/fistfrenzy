@@ -20,7 +20,7 @@ function Lobby(props) {
     const { socket, connectToSocket, disconnectSocket, setGameId } = useFistStore();
 
   const boxProps = {
-      className: "flex w-full h-full justify-center items-center",
+      className: "w-full h-full flex justify-center items-center",
       initial: { opacity: 0 },
       animate: {opacity: 1}
 

@@ -12,44 +12,51 @@ const animationProps = (delay) => {
     return {
         initial: { opacity: 0, y: 50 },
         animate: { opacity: 1, y: 0 },
-        transition: {duration: 2, delay: delay}
+        transition: { duration: 2, delay: delay },
     }
 }
 
 function GameButtons({ user, handleGameButton, loadingButton }) {
 
+    const randomHello = () => {
+    const randomIndex = Math.floor(Math.random() * helloArray.length)
+    console.log(randomIndex)
+    return helloArray[randomIndex]
+        }
     const hello = randomHello();
 
     return (
-        <div>
-            <div className='gap-0 overflow-clip '>
+        <div className='w-full h-full items-center m-2 text-lightblue'>
+            
                 <motion.div
-                    {...animationProps(0)}
-                    className='text-[500%] mb-0 font-verziert text-transparent bg-clip-text 
+                    className='text-[500%] text-center font-verziert text-transparent bg-clip-text 
                     bg-gradient-to-b from-black to-transparent'>
-                    {hello.hello.toUpperCase()},
+                    FI$TFRENZY
                 </motion.div>
 
-                <motion.div {...animationProps(0.2)} className='text-[12px] text-right'>({hello.language})</motion.div></div>
-            <div className='h-full w-full font-normal gap-8 overflow-hidden text-lightblue'>
+            
+                <motion.div {...animationProps(0.2)}
+                    className='text-lightblue'>
+                    <div className='text-[30px] -mb-2'>{hello.hello.toUpperCase()},</div>
+                ({hello.language})</motion.div>
             
             
             
-                <motion.div {...animationProps(0.4)} className='text-5xl'>{user?.username}</motion.div>
             
-            <div className=''>
-                <motion.div {...animationProps(3)}>your current elo is...</motion.div>
-                <motion.div {...animationProps(3.2)} className='text-5xl'>{user?.elo}</motion.div>
+                <motion.div {...animationProps(0.4)}
+                className='text-5xl text-center mb-4'>{user?.username}</motion.div>
+            
+            <div className='text-right'>
+                <motion.div {...animationProps(1)}>your current elo is...</motion.div>
+                <motion.div {...animationProps(1.2)} className='text-5xl mb-6'>{user?.elo}</motion.div>
             </div>
 
             <motion.div
-                {...animationProps(3.5)}
-                className='cursor-pointer bg-verydarkblue font-verziert text-5xl shadow-xl rounded-sm p-8'
-                whileTap={{ scale: 0.8 }}
+                {...animationProps(2)}
+                className='cursor-pointer bg-verydarkblue w-[90%] mx-auto flex justify-center items-center font-verziert text-5xl shadow-2xl rounded-sm p-8'
                 onClick={()=>handleGameButton()}
             >PLAY</motion.div>
 
-        </div>
         </div>
         
     );

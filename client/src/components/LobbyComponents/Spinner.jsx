@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 function Spinner(props) {
 
 
-    return (
+  return (
         <motion.div
+        className='flex justify-center items-center w-fit h-fit'
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
             <motion.div
@@ -21,6 +22,7 @@ function Spinner(props) {
         transition={{ duration: 1+Math.random(), repeat: Infinity, ease: 'backInOut' }}
       ></motion.div>
       </motion.div>
+      
       
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 
-const tableHeadStyles = "flex-1 p-1 m-1 rounded-md cursor-pointer bg-red-200 w-fit bg-verydarkblue bg-opacity-30"
+const tableHeadStyles = "flex-1 p-1 m-1 cursor-pointer w-fit bg-opacity-30"
 const tableHeadAnimations = {
     whileTap: {scale: 0.95}
 }
@@ -39,9 +39,9 @@ function Leaderboard({ playersList }) {
 
 
     return (
-      <div className='h-full w-full font-normal p-2 text-lightblue'>
+      <div className='h-full w-full font-normal text-lightblue'>
         
-          <div className='w-full text-[500%] 
+          <div className='w-full text-[500%] text-center
             font-verziert text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent'>LEADERBOARD</div>
       
         
@@ -68,7 +68,7 @@ function Leaderboard({ playersList }) {
                     const backgroundColor = (index % 2 === 0 ? "bg-verydarkblue" : "");
                   return (
                     <motion.div
-                      className={'flex rounded-md bg-opacity-30 ' + backgroundColor}
+                      className={'flex shadow-md shadow-verydarkblue bg-opacity-30 ' + backgroundColor}
                       key={index + " player"}
                       initial={{ y: 30, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
