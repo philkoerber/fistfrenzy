@@ -5,7 +5,6 @@ import Spinner from './Spinner';
 
 const randomHello = () => {
     const randomIndex = Math.floor(Math.random() * helloArray.length)
-    console.log(randomIndex)
     return helloArray[randomIndex]
 }
 
@@ -21,7 +20,6 @@ function GameButtons({ user, handleGameButton, loadingButton }) {
 
     const randomHello = () => {
     const randomIndex = Math.floor(Math.random() * helloArray.length)
-    console.log(randomIndex)
     return helloArray[randomIndex]
         }
     const hello = randomHello();
@@ -53,7 +51,7 @@ function GameButtons({ user, handleGameButton, loadingButton }) {
             </div>
 
             <motion.div
-                whileHover={{ backdropBlur: '20px' }}
+              
                 whileTap={{scale: 0.9}}
                 transition={{duration: 0.2}}
                 className='cursor-pointer bg-verydarkblue bg-opacity-50 w-[40%] h-[100px] mx-auto font-verziert text-5xl shadow-2xl rounded-sm p-8'

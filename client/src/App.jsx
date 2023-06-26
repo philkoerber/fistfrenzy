@@ -63,7 +63,7 @@ function App() {
 
 
   return (
-    <div className="w-screen min-h-fit h-screen bg-verydarkblue font-normal">
+    <div className="w-screen min-h-screen h-fit bg-verydarkblue font-normal">
       {!isAuth
         ?
         <Welcome setIsAuth={setIsAuth} />

@@ -21,6 +21,11 @@ connection.once("open", () => {
 });
 //_________________________
 
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
 router.post("/login", async (req, res, next) => {
   try {
     passport.authenticate("local", async (err, user, info) => {
@@ -43,9 +48,21 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res) => {
   try {
-    const existingPlayer = await Player.findOne({ username: req.body.username }).exec();
+    const { username, email, password } = req.body;
+    const existingPlayer = await Player.findOne({ username: username }).exec();
     if (existingPlayer) {
-      return res.send("User already exists, choose another name!");
+      return res.status(500).send("User already exists, choose another name!");
+    }
+    if (username.length < 4 || username.length > 14) {
+      return res.status(500).send("Username should be between 4 and 14 characters.");
+    }
+
+    if (password.length < 6 || password.length > 20) {
+      return res.status(500).send("Password should be between 6 and 20 characters.");
+    }
+
+    if (!validateEmail(email)) {
+      return res.status(500).send("Invalid email address.");
     }
 
     const hashedPw = await bcrypt.hash(req.body.password, 12);

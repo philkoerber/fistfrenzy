@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import {motion} from "framer-motion"
 import Axios from "axios";
 
 const SignupLogin = ({setIsAuth}) => {
   
   const [loginUser, setLoginUser] = useState({});
   const [signupUser, setSignupUser] = useState({});
+
+  const [signupError, setSignupError] = useState("")
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -36,7 +39,9 @@ const SignupLogin = ({setIsAuth}) => {
         setIsAuth(true);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response) {
+          setSignupError(err.response.data)
+        };
       });
   };
 
@@ -131,7 +136,14 @@ const SignupLogin = ({setIsAuth}) => {
             type="submit"
           >
             Sign In
-          </button>
+            </button>
+            <motion.div
+              key={signupError}
+              className='text-crimson'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1}}>
+              {signupError}
+            </motion.div>
           
         </div>
       </form>
