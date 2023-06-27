@@ -7,8 +7,8 @@ function OpponentInfo(props) {
 
 
     return (
-        <div className='w-[200px] h-[100px] bg-gray-300 rounded-b-xl opacity-90 text-center'>
-            <div className='text-xl font-bold'>{opponent.username}</div>
+        <div className='text-center text-verydarkblue'>
+            <div className='text-5xl'>{opponent.username}</div>
             <div>{opponent.elo}</div>
         </div>
     );

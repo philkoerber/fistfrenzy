@@ -59,8 +59,8 @@ function Game() {
 
     return (
         <motion.div
-            className='w-full h-full relative flex justify-center items-center gap-4 overflow-hidden'>
-            <div className='w-full h-full flex justify-center absolute'>
+            className='w-full h-full relative flex justify-center items-center gap-4 overflow-hidden bg-noise font-normal'>
+            <div className='w-full h-full flex justify-center absolute z-10'>
                 <motion.div
                 className='absolute -bottom-[10%]'
                 animate={selectedMoves.player ? {
@@ -69,35 +69,35 @@ function Game() {
                 } :
                     {
                         x: 0,
-                        scale: 0.75
+                        scale: 0.8
                     }}>
                 <Hand selectedMove={selectedMoves.player} />
             </motion.div>
             </div>
 
-            <div className='w-full h-full flex justify-center absolute rotate-180'>
+            <div className='w-full h-full flex justify-center absolute rotate-180 z-10'>
                 <motion.div
-                className='absolute -bottom-[10%]'
+                className='absolute -bottom-[10%] z-10'
                 animate={selectedMoves.opponent ? {
                     y: "-25vh",
                     scale: 1,
                 } :
                     {
                         x: 0,
-                        scale: 0.75
+                        scale: 0.5
                     }}>
                 <Hand selectedMove={selectedMoves.opponent} />
             </motion.div>
             </div>
 
-            <div className='absolute top-0'>
+            <div className='absolute top-0 z-20'>
                 <OpponentInfo/>
             </div>
             
-            <div><Countdown phase={phase} /></div>
+            <div className='z-30'><Countdown phase={phase} /></div>
             <div><CurrentTurn currentTurnNumber={gameState?.currentTurn}/></div>
             
-            <div className='flex gap-6 absolute bottom-6'>
+            <div className='flex gap-6 absolute bottom-6 z-20'>
                 <motion.div
                     className={handButtonStyles}
                     {...handButtonAnimation(selectedButtonIndex === 0)}

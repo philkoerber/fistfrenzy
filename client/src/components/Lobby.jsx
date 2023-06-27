@@ -35,10 +35,8 @@ function Lobby(props) {
       credentials: "include",
       url: "http://localhost:3001/lobby",
     }).then((res) => {
-      const game = res.data.currentUser.inGame;
-      if(game){setGameId(game)}
-      else{setUser(res.data.currentUser);
-        setPlayersList(res.data.playersList);}
+      setUser(res.data.currentUser);
+      setPlayersList(res.data.playersList);
       
     });
     }, []);

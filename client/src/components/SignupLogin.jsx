@@ -20,11 +20,12 @@ const SignupLogin = ({setIsAuth}) => {
       url: "http://localhost:3001/login",
     })
       .then((res) => {
-        console.log(res.data);
         setIsAuth(true);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response) {
+          setSignupError(err.response.data)
+        };
       });
   };
 
