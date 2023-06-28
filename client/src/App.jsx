@@ -63,14 +63,15 @@ function App() {
 
 
   return (
-    <div className="w-screen h-screen min-h-fit bg-verydarkblue font-normal">
+    <div className="w-screen h-screen min-h-fit bg-verydarkblue bg-noise font-normal">
       {!isAuth
         ?
         <Welcome setIsAuth={setIsAuth} />
         :
         gameId
           ?
-          <Game />
+            <Game />
+         
           :
           <Lobby />}
       

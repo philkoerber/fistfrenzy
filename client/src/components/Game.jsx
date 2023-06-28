@@ -7,6 +7,7 @@ import Hand from './GameComponents/Hand';
 import Countdown from './GameComponents/Countdown';
 import OpponentInfo from './GameComponents/OpponentInfo';
 import CurrentTurn from './GameComponents/CurrentTurn';
+import Score from './GameComponents/Score';
 
 
 const handButtonStyles = "bg-lightblue w-20 h-20 cursor-pointer rounded-full flex justify-center items-center"
@@ -39,10 +40,10 @@ function Game() {
     useEffect(() => {
         setSelectedButtonIndex(null);
         if (phase === "countdown") {
-            console.log(gameState)
+            //countdown stuff
         }
         if (phase === "showdown") {
-            console.log(winner)
+            //showdown stuff
         }
     },[phase])
     
@@ -59,7 +60,7 @@ function Game() {
 
     return (
         <motion.div
-            className='w-full h-full relative flex justify-center items-center gap-4 overflow-hidden bg-noise font-normal'>
+            className='w-full max-w-[1200px] h-full mx-auto relative flex justify-center items-center gap-4 overflow-hidden font-normal'>
             <div className='w-full h-full flex justify-center absolute z-10'>
                 <motion.div
                 className='absolute -bottom-[10%]'
@@ -95,7 +96,9 @@ function Game() {
             </div>
             
             <div className='z-30'><Countdown phase={phase} /></div>
-            <div><CurrentTurn currentTurnNumber={gameState?.currentTurn}/></div>
+            <div><CurrentTurn currentTurnNumber={gameState?.currentTurn} /></div>
+
+            <div className='absolute w-full right-0 left-0'><Score/></div>
             
             <div className='flex gap-6 absolute bottom-6 z-20'>
                 <motion.div
