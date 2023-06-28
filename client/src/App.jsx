@@ -41,6 +41,8 @@ function App() {
       
       socket.on("showdown", ({ hands, result, gameState }) => {
         setPhase("showdown")
+        console.log(gameState)
+        setGameState(gameState)
         setHands(hands);
         setWinner(result);
       })
